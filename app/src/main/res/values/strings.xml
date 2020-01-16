@@ -4,4 +4,7 @@
     <string name="klarna_demo">Klarna Demo</string>
     <string name="custom_url">Custom URL</string>
     <string name="type_url">Type a URL</string>
+
+    <string name="return_url_scheme">your-app-scheme</string>
+    <string name="return_url_host">your-app-host</string>
 </resources>
