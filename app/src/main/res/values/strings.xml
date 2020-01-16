@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Klarna Hybrid Example</string>
+    <string name="hybrid_demo_app">Hybrid\nDemo\nApp</string>
+    <string name="klarna_demo">Klarna Demo</string>
+    <string name="custom_url">Custom URL</string>
+    <string name="type_url">Type a URL</string>
 </resources>
