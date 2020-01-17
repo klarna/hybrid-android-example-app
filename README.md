@@ -35,7 +35,7 @@ These are our Android-specific guides for the In-App SDK. We currently have guid
 
 [Hybrid Integration on Android](https://developers.klarna.com/documentation/in-app/android/steps-hybrid/)
 
-###Screenshots
+### Screenshots
 
 <img src="Screenshots/screenshot1.png" width="250"/> <img src="Screenshots/screenshot2.png" width="250"/> <img src="Screenshots/screenshot3.png" width="250"/>
 
