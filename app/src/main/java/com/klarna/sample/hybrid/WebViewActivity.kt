@@ -13,13 +13,10 @@ import android.webkit.WebViewClient
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.klarna.mobile.sdk.KlarnaMobileSDKError
-import com.klarna.mobile.sdk.api.OnCompletion
 import com.klarna.mobile.sdk.api.hybrid.KlarnaHybridSDK
-import com.klarna.mobile.sdk.api.hybrid.KlarnaHybridSDKCallback
 import kotlinx.android.synthetic.main.activity_webview.*
 
-class WebViewActivity : AppCompatActivity(), KlarnaHybridSDKCallback {
+class WebViewActivity : AppCompatActivity() {
 
     companion object {
         const val KEY_URL: String = "URL"
@@ -39,7 +36,7 @@ class WebViewActivity : AppCompatActivity(), KlarnaHybridSDKCallback {
     }
 
     private fun setupSDK() {
-        klarnaHybridSDK = KlarnaHybridSDK("${getString(R.string.return_url_scheme)}://${getString(R.string.return_url_host)}", this)
+        klarnaHybridSDK = KlarnaHybridSDK("${getString(R.string.return_url_scheme)}://${getString(R.string.return_url_host)}", KlarnaHybridSDKCallback(findViewById(R.id.rootLayout)))
         webView.webViewClient = MyWebViewClient()
         webView.webChromeClient = WebChromeClient()
         webView.settings.javaScriptEnabled = true
@@ -75,31 +72,6 @@ class WebViewActivity : AppCompatActivity(), KlarnaHybridSDKCallback {
         editTextAddressBar.clearFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         imm?.hideSoftInputFromWindow(editTextAddressBar?.windowToken, 0)
-    }
-
-
-    override fun didHideFullscreenContent(webView: WebView, completion: OnCompletion) {
-        showMessage("didHideFullscreenContent")
-        completion.run()
-    }
-
-    override fun didShowFullscreenContent(webView: WebView, completion: OnCompletion) {
-        showMessage("didShowFullscreenContent")
-        completion.run()
-    }
-
-    override fun onErrorOccurred(webView: WebView, error: KlarnaMobileSDKError) {
-        showMessage("onErrorOccurred: " + error.message)
-    }
-
-    override fun willHideFullscreenContent(webView: WebView, completion: OnCompletion) {
-        showMessage("willHideFullscreenContent")
-        completion.run()
-    }
-
-    override fun willShowFullscreenContent(webView: WebView, completion: OnCompletion) {
-        showMessage("willShowFullscreenContent")
-        completion.run()
     }
 
     private fun showMessage(message: String) {
