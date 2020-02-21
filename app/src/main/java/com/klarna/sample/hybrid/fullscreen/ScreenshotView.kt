@@ -1,4 +1,4 @@
-package com.klarna.sample.hybrid
+package com.klarna.sample.hybrid.fullscreen
 
 import android.annotation.SuppressLint
 import android.content.Context

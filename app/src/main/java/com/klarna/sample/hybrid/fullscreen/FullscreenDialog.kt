@@ -1,4 +1,4 @@
-package com.klarna.sample.hybrid
+package com.klarna.sample.hybrid.fullscreen
 
 import android.app.Dialog
 import android.content.Context
@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import android.view.*
 import android.webkit.WebView
+import com.klarna.sample.hybrid.R
 
 /**
  * Custom dialog for showing fullscreen content aka moving fullscreen
@@ -60,7 +61,8 @@ class FullscreenDialog(context: Context, var webView: WebView?, var rootLayout: 
             rootLayout?.addView(webView)
             val constraintSet = ConstraintSet()
             constraintSet.clone(rootLayout)
-            constraintSet.connect(it.id, ConstraintSet.TOP, R.id.editTextAddressBar, ConstraintSet.BOTTOM, 0)
+            constraintSet.connect(it.id, ConstraintSet.TOP,
+                R.id.editTextAddressBar, ConstraintSet.BOTTOM, 0)
             constraintSet.applyTo(rootLayout)
             it.layoutParams = it.layoutParams?.apply {
                 contentHeight?.apply {

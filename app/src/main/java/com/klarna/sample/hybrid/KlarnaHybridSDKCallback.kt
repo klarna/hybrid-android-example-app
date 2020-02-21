@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.klarna.mobile.sdk.KlarnaMobileSDKError
 import com.klarna.mobile.sdk.api.OnCompletion
 import com.klarna.mobile.sdk.api.hybrid.KlarnaHybridSDKCallback
+import com.klarna.sample.hybrid.fullscreen.FullscreenDialog
 
 /**
  * Implementation of the [KlarnaHybridSDKCallback]
@@ -16,7 +17,11 @@ class KlarnaHybridSDKCallback(private val rootLayout: ConstraintLayout): KlarnaH
     override fun willShowFullscreenContent(webView: WebView, completion: OnCompletion) {
         Toast.makeText(webView.context, "willShowFullscreenContent", Toast.LENGTH_LONG).show()
 
-        fullscreenDialog = FullscreenDialog(webView.context, webView, rootLayout)
+        fullscreenDialog = FullscreenDialog(
+            webView.context,
+            webView,
+            rootLayout
+        )
         fullscreenDialog?.prepareToShowContent()
 
         completion.run()
