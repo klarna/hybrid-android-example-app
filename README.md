@@ -6,10 +6,12 @@ This is an example Android app to demonstrate the hybrid integration of [Klarna 
 
 The Klarna In-App SDK allows merchants to natively integrate Klarna’s products into their apps. This means that you can add services like Klarna Payments to your app and let your customers pay with our payment methods.
 
+**The Native Integration Demo App of Klarna In-App SDK:** [Klarna In-App Android Demo App](https://github.com/klarna/kp-android-example-app).
+
 **Looking for Klarna Checkout Android Demo App?** Check out the [Klarna Checkout Android Demo App](https://github.com/klarna/kco-android-example-app) repo instead.
 
 ## What Does Klarna In-App SDK Offer?
-Klarna In-App SDK offers two integration approaches: **Native integration** and **Hybrid integration**.
+Klarna In-App SDK offers two integration approaches: **Native integration** and **Hybrid integration** (showcased in this demo app).
 
 Native integration allows fully native apps to add views with Klarna content to their app. We currently support Klarna Payments, allowing you to add payment views to your checkout and authorizing a session to create an order natively.
 
@@ -34,6 +36,9 @@ Our iOS and Android SDKs hold weak references to your web views, don’t overrid
 These are our Android-specific guides for the In-App SDK. We currently have guides to get you started, to integrate Klarna Payments and to perform a hybrid integration.
 
 [Hybrid Integration on Android](https://developers.klarna.com/documentation/in-app/android/steps-hybrid/)
+
+### Fullscreen Events
+Your app should handle specific events that you might receive from the SDK, which allow you to move your web view to a fullscreen presentation in the way that is most suitable for your app. The solution demonstrated in the demo app is just one of the many available solutions that you can use. [Read More About Fullscreen Transitions](https://developers.klarna.com/documentation/in-app/overview/fullscreen-events-hybrid/)
 
 ### Screenshots
 

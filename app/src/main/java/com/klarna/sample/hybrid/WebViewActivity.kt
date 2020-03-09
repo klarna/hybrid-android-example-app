@@ -74,17 +74,15 @@ class WebViewActivity : AppCompatActivity() {
         imm?.hideSoftInputFromWindow(editTextAddressBar?.windowToken, 0)
     }
 
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        Log.d(javaClass.simpleName, message)
-    }
-
     inner class MyWebViewClient :
         WebViewClient() {
+
+        // If shouldFollowNavigation(url) returns false, the url loading should be overridden and ignored. Otherwise load the url.
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
             return !klarnaHybridSDK.shouldFollowNavigation(url)
         }
 
+        // The SDK needs to be notified every time a new url has loaded.
         override fun onPageFinished(view: WebView, url: String) {
             klarnaHybridSDK.newPageLoad(view)
         }
