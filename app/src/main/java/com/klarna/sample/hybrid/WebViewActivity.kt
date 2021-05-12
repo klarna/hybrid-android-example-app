@@ -11,8 +11,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.klarna.mobile.sdk.api.KlarnaEventListener
 import com.klarna.mobile.sdk.api.hybrid.KlarnaHybridSDK
 import kotlinx.android.synthetic.main.activity_webview.*
 
@@ -36,12 +36,19 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun setupSDK() {
-        klarnaHybridSDK = KlarnaHybridSDK("${getString(R.string.return_url_scheme)}://${getString(R.string.return_url_host)}", KlarnaHybridSDKCallback(findViewById(R.id.rootLayout)))
+        klarnaHybridSDK = KlarnaHybridSDK(
+            "${getString(R.string.return_url_scheme)}://${getString(R.string.return_url_host)}",
+            KlarnaHybridSDKCallback(findViewById(R.id.rootLayout))
+        )
         webView.webViewClient = MyWebViewClient()
         webView.webChromeClient = WebChromeClient()
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         klarnaHybridSDK.addWebView(webView)
+        klarnaHybridSDK.registerEventListener(KlarnaEventListener {
+            // Replace with your implementation for events
+            Log.d("Hybrid Klarna Event", it.bodyString ?: "")
+        })
     }
 
     private fun setupAddressBar() {
