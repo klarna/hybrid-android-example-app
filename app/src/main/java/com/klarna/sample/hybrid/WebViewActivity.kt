@@ -2,15 +2,18 @@ package com.klarna.sample.hybrid
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.klarna.mobile.sdk.api.KlarnaEventListener
 import com.klarna.mobile.sdk.api.hybrid.KlarnaHybridSDK
@@ -85,8 +88,20 @@ class WebViewActivity : AppCompatActivity() {
         WebViewClient() {
 
         // If shouldFollowNavigation(url) returns false, the url loading should be overridden and ignored. Otherwise load the url.
+        @Deprecated("Deprecated in Java")
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
             return !klarnaHybridSDK.shouldFollowNavigation(url)
+        }
+
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
+            request?.url?.toString()?.let {
+                return !klarnaHybridSDK.shouldFollowNavigation(it)
+            }
+            return super.shouldOverrideUrlLoading(view, request)
         }
 
         // The SDK needs to be notified every time a new url has loaded.
@@ -100,6 +115,7 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (webView.canGoBack()) {
             webView.goBack()
