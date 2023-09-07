@@ -35,6 +35,8 @@ class WebViewActivity : AppCompatActivity() {
         setupAddressBar()
         intent.getStringExtra(KEY_URL)?.let {
             loadUrl(it)
+        } ?: run {
+            loadUrl("file:///android_asset/demo.html")
         }
     }
 
